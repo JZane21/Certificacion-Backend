@@ -1,4 +1,5 @@
 trabajo.md
 node_modules
-.env
+./nodejs/sql-app/.env
 .git
+.gitignore
