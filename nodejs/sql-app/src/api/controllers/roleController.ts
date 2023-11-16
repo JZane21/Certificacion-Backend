@@ -41,11 +41,37 @@ export class RoleController {
         res.json(userDto);
     }
 
+    public async deleteRole(req: Request, res: Response): Promise<Response> {
+        const { roleId } = req.params;
+        try {
+            logger.debug(`Trying to delete role with ID: ${roleId}`);
+            await this.roleService.deleteRoleById(roleId);
+            logger.info(`Role deleted with ID: ${roleId} deleted succesfully`);
+            return showInfoResponse(200, roleId, res);
+        } catch (error) {
+            logger.error(`Error while deleting role with ID: ${roleId}. Error: ${error}`);
+            return showErrorResponse(500, res, error);
+        }
+    }
+
+    public async updateRole(req: Request, res: Response): Promise<Response> {
+        const { roleId } = req.params;
+        const updateData = req.body;
+        try {
+            logger.debug(`Trying to update role with ID: ${roleId}`);
+            const updatedRole = await this.roleService.updateRoleById(roleId, updateData);
+            logger.info(`Role updated with ID: ${roleId} updated succesfully`);
+            return showInfoResponse(200, { user: updatedRole }, res);
+        } catch (error) {
+            logger.error(`Error while updating role with ID: ${roleId}. Error: ${error}`);
+            return showErrorResponse(500, res, { message: 'Error while updating role' });
+        }
+    };
 
     public routes() {
         this.router.get('/:id', this.getRoleById.bind(this));
         this.router.post('/', this.createRole.bind(this));
-        // this.router.delete('/:userId', this.deleteUser.bind(this));
-        // this.router.put('/:userId', this.updateUser.bind(this));
+        this.router.delete('/:roleId', this.deleteRole.bind(this));
+        this.router.put('/:roleId', this.updateRole.bind(this));
     }
 }

@@ -120,3 +120,5 @@ info: ::ffff:127.0.0.1 - - [15/Nov/2023:17:53:02 +0000] "GET /api/roles HTTP/1.1
 info: ::ffff:127.0.0.1 - - [15/Nov/2023:17:53:27 +0000] "GET /api/auth HTTP/1.1" 404 147 "-" "node-fetch/1.0 (+https://github.com/bitinn/node-fetch)" {"timestamp":"15/Nov/2023:13:53:27 -0400"}
 info: ::ffff:127.0.0.1 - - [15/Nov/2023:17:54:18 +0000] "GET /api/users HTTP/1.1" 200 2 "-" "node-fetch/1.0 (+https://github.com/bitinn/node-fetch)" {"timestamp":"15/Nov/2023:13:54:18 -0400"}
 info: ::ffff:127.0.0.1 - - [15/Nov/2023:17:54:23 +0000] "GET /api/roles HTTP/1.1" 404 148 "-" "node-fetch/1.0 (+https://github.com/bitinn/node-fetch)" {"timestamp":"15/Nov/2023:13:54:23 -0400"}
+error: [object Object] {"timestamp":"16/Nov/2023:11:29:02 -0400"}
+error: [object Object] {"timestamp":"16/Nov/2023:11:30:49 -0400"}

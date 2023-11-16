@@ -5,3 +5,5 @@ error:[14/Nov/2023:12:20:33 -0400] Error al crear el usuario en UserService: Que
 error:[14/Nov/2023:12:20:33 -0400] Error en Create user ER_DUP_ENTRY: Duplicate entry 'ejemplo3@localhost' for key 'user_entity.IDX_415c35b9b3b6fe45a3b065030f'
 error:[14/Nov/2023:12:20:48 -0400] Error en Create rol No metadata for "RolEntity" was found.
 error:[14/Nov/2023:12:21:37 -0400] Error en Create rol No metadata for "RolEntity" was found.
+error: [object Object] {"timestamp":"16/Nov/2023:11:29:02 -0400"}
+error: [object Object] {"timestamp":"16/Nov/2023:11:30:49 -0400"}

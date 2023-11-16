@@ -26,4 +26,14 @@ export class RoleService {
         }
         return roleResponse;
     }
+
+    async deleteRoleById(roleId: string): Promise<void> {
+        logger.debug(`UserService: Intentando eliminar al usuario con ID: ${roleId}`);
+        await this.roleRepository.deleteRole(roleId);
+    }
+
+    async updateRoleById(roleId: string, updateData: Partial<CreateRoleDTO>): Promise<Role> {
+        logger.debug(`UserService: Intentando actualizar al usuario con ID: ${roleId}`);
+        return this.roleRepository.updateRole(roleId, updateData);
+    }
 }

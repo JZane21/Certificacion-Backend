@@ -18,7 +18,8 @@ export class UserService {
                 id: user.id,
                 username: user.username,
                 email: user.email,
-                lastLogin: user.lastLogin
+                lastLogin: user.lastLogin,
+                token: user.token
             }
             return userDto;
         });
@@ -37,7 +38,8 @@ export class UserService {
             id: user.id,
             username: user.username,
             email: user.email,
-            lastLogin: user.lastLogin
+            lastLogin: user.lastLogin,
+            token: user.token
         }
         // log.info user obtenido exitosamente
         return userResponse;

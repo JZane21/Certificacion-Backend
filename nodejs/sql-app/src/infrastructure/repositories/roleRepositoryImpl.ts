@@ -4,6 +4,7 @@ import logger from "../logger/logger";
 import { RoleRepository } from "../../domain/interfaces/roleRepository";
 import { Role } from "../../domain/models/role";
 import { RoleEntity } from "../entities/roleEntity";
+import { showError } from "../logger/message.format";
 
 export class RoleRepositoryImpl implements RoleRepository {
     async findById(id: string): Promise<Role> {
@@ -27,10 +28,36 @@ export class RoleRepositoryImpl implements RoleRepository {
             description: roleResponse.description
         })
     }
-    deleteRole(id: string): Promise<void> {
-        throw new Error("Method not implemented.");
+
+    async deleteRole(id: string): Promise<void> {
+        const repository = AppDataSource.getRepository(RoleEntity);
+        try {
+            const deletedRole = await repository.findOneBy({ id });
+
+            if (!deletedRole) {
+                const errorMessage: string = `RoleRepository: Error deleting role by id: ${id}.`;
+                logger.error(errorMessage);
+                throw new Error(`${showError(404, errorMessage)}`);
+            }
+
+            await repository.remove(deletedRole);
+        } catch (error) {
+            logger.error({ message: error });
+            throw new Error(`${showError(404, error)}`);
+        }
     }
-    updateRole(roleId: string, updateData: Partial<Role>): Promise<Role> {
-        throw new Error("Method not implemented.");
+
+    async updateRole(roleId: string, updateData: Partial<Role>): Promise<Role> {
+        const repository = AppDataSource.getRepository(RoleEntity);
+        const roleToUpdated = await repository.findOneBy({ id: roleId });
+
+        if (!roleToUpdated) {
+            logger.error(`UserRepository: Error al modificar al usuario con ID: ${roleId}.`);
+            throw new Error('Usuario no encontrado');
+        }
+
+        repository.merge(roleToUpdated, updateData);
+        const updatedRole = await repository.save(roleToUpdated);
+        return updatedRole;
     }
 }
